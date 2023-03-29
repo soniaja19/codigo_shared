@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -8,6 +9,24 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String name = "";
+  String adress = "";
+  String email = "";
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    //Obtener los datos del Shared Preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    name = prefs.getString("name") ?? "No disponible";
+    adress = prefs.getString("adress") ?? "No disponible";
+    email = prefs.getString("email") ?? "No disponible";
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,26 +35,26 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.all(22.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
+          children: [
+            const Text(
               "Mi Perfil",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Divider(),
-            SizedBox(
+            const Divider(),
+            const SizedBox(
               height: 30,
             ),
             Text(
-              "Sonia Justiniano",
-              style: TextStyle(
+              name,
+              style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Text(
+            const Text(
               "Nombre completo",
               style: TextStyle(
                 fontSize: 14.0,
@@ -43,17 +62,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Colors.black,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Text(
-              "Mz F Lote 19, Los Heraldos - SJL",
-              style: TextStyle(
+              adress,
+              style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Text(
+            const Text(
               "Dirección",
               style: TextStyle(
                 fontSize: 14.0,
@@ -61,17 +80,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Colors.black,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Text(
-              "sonia.ju.ay@gmail.com",
-              style: TextStyle(
+              email,
+              style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Text(
+            const Text(
               "Correo electrónico",
               style: TextStyle(
                 fontSize: 14.0,
