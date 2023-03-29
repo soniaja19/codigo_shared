@@ -1,3 +1,4 @@
+import 'package:codigo_shared/pages/widget/my_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,42 +39,70 @@ class _HomePageState extends State<HomePage> {
           "Mi Share Preference",
         ),
       ),
-      drawer:
-          const Drawer(), //para colorcar una barrita al costado, menú lateral
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                save();
-              },
-              child: const Text(
-                "Guardar",
-              ),
+      drawer: MyDrawerWidget(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Nombre completo",
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Dirección",
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Correo electrónico",
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    save();
+                  },
+                  child: const Text(
+                    "Guardar",
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    getData();
+                  },
+                  child: const Text(
+                    "Obtener",
+                  ),
+                ),
+                Text(
+                  name,
+                ),
+                FutureBuilder(
+                  future: getName(),
+                  builder: (BuildContext context, AsyncSnapshot snap) {
+                    if (snap.hasData) {
+                      return Text(
+                          snap.data); // si esto se cumple se imprime el getname
+                    }
+                    return const CircularProgressIndicator(); // si no cumple se aplica el CircularProgressIndicator
+                  },
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                getData();
-              },
-              child: const Text(
-                "Obtener",
-              ),
-            ),
-            Text(
-              name,
-            ),
-            FutureBuilder(
-              future: getName(),
-              builder: (BuildContext context, AsyncSnapshot snap) {
-                if (snap.hasData) {
-                  return Text(
-                      snap.data); // si esto se cumple se imprime el getname
-                }
-                return const CircularProgressIndicator(); // si no cumple se aplica el CircularProgressIndicator
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );
