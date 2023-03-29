@@ -1,3 +1,4 @@
+import 'package:codigo_shared/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawerWidget extends StatelessWidget {
@@ -56,11 +57,17 @@ class MyDrawerWidget extends StatelessWidget {
               ],
             ),
           ),
-          const ListTile(
-            leading: Icon(
+          ListTile(
+            //para llamar una pagina
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()));
+            },
+            leading: const Icon(
               Icons.person,
             ),
-            title: Text(
+            title: const Text(
               "Mi perfil",
             ),
           ),

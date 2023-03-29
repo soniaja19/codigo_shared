@@ -1,6 +1,7 @@
-import 'package:codigo_shared/pages/widget/my_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../widget/my_drawer_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,11 +11,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String name = "--";
   int age = 0;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _adressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+//_ significa que la variable es privada, para queesta clase tenga acceso a ello, utilizado genericamente
 
   Future save() async {
     SharedPreferences mandarina = await SharedPreferences.getInstance();
-    mandarina.setString("name", "Sonia Justininao");
-    mandarina.setInt("age", 30); //Set para guardar, get para obtener.
+
+    //guardar la información que se escribe en el liststyle
+    mandarina.setString("name", _nameController.text);
+    mandarina.setString("adress", _adressController.text);
+    mandarina.setString("email", _emailController.text);
+    // mandarina.setInt("age", 30); //Set para guardar, get para obtener.
     print("Guardando....");
   }
 
@@ -47,24 +56,32 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  // inputFormatters: [
+                  //   FilteringTextInputFormatter.allow(
+                  //     RegExp("[0-9]"),//aqui podemos colocar caracteres no imprimibles
+                  //   ),
+                  // ],
+                  controller: _nameController,
+                  decoration: const InputDecoration(
                     hintText: "Nombre completo",
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: _adressController,
+                  decoration: const InputDecoration(
                     hintText: "Dirección",
                   ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
                     hintText: "Correo electrónico",
                   ),
                 ),
@@ -79,27 +96,27 @@ class _HomePageState extends State<HomePage> {
                     "Guardar",
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    getData();
-                  },
-                  child: const Text(
-                    "Obtener",
-                  ),
-                ),
-                Text(
-                  name,
-                ),
-                FutureBuilder(
-                  future: getName(),
-                  builder: (BuildContext context, AsyncSnapshot snap) {
-                    if (snap.hasData) {
-                      return Text(
-                          snap.data); // si esto se cumple se imprime el getname
-                    }
-                    return const CircularProgressIndicator(); // si no cumple se aplica el CircularProgressIndicator
-                  },
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     getData();
+                //   },
+                //   child: const Text(
+                //     "Obtener",
+                //   ),
+                // ),
+                // Text(
+                //   name,
+                // ),
+                // FutureBuilder(
+                //   future: getName(),
+                //   builder: (BuildContext context, AsyncSnapshot snap) {
+                //     if (snap.hasData) {
+                //       return Text(
+                //           snap.data); // si esto se cumple se imprime el getname
+                //     }
+                //     return const CircularProgressIndicator(); // si no cumple se aplica el CircularProgressIndicator
+                //   },
+                // ),
               ],
             ),
           ),
