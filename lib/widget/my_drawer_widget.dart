@@ -1,4 +1,5 @@
 import 'package:codigo_shared/pages/profile_page.dart';
+import 'package:codigo_shared/utils/sp_global.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawerWidget extends StatelessWidget {
@@ -28,26 +29,26 @@ class MyDrawerWidget extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   backgroundImage: AssetImage("assets/images/foto2.jpg"),
                   backgroundColor: Colors.pink,
                   radius: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text(
-                  "Sonia Justiniano Ayte",
-                  style: TextStyle(
+                  SPGlobal().name,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 3,
                 ),
-                Text(
+                const Text(
                   "sonia.ju.ay@gmail.com",
                   style: TextStyle(
                     color: Colors.white70,

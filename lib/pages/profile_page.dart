@@ -1,5 +1,5 @@
+import 'package:codigo_shared/utils/sp_global.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,10 +20,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   getData() async {
     //Obtener los datos del Shared Preferences
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    name = prefs.getString("name") ?? "No disponible";
-    adress = prefs.getString("adress") ?? "No disponible";
-    email = prefs.getString("email") ?? "No disponible";
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // name = prefs.getString("name") ?? "No disponible";
+    name = SPGlobal().name;
+    // adress = prefs.getString("adress") ?? "No disponible";
+    // email = prefs.getString("email") ?? "No disponible";
+
     setState(() {});
   }
 
@@ -36,9 +38,9 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Mi Perfil",
-              style: TextStyle(
+            Text(
+              "Mi Perfil: ${SPGlobal().name}",
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
               ),

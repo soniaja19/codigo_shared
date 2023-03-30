@@ -1,3 +1,4 @@
+import 'package:codigo_shared/utils/sp_global.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,15 +17,16 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _emailController = TextEditingController();
 //_ significa que la variable es privada, para queesta clase tenga acceso a ello, utilizado genericamente
 
-  Future save() async {
-    SharedPreferences mandarina = await SharedPreferences.getInstance();
+  save() async {
+    // // SharedPreferences mandarina = await SharedPreferences.getInstance();
 
     //guardar la información que se escribe en el liststyle
-    mandarina.setString("name", _nameController.text);
-    mandarina.setString("adress", _adressController.text);
-    mandarina.setString("email", _emailController.text);
+    // // mandarina.setString("name", _nameController.text);
+    // // mandarina.setString("adress", _adressController.text);
+    // // mandarina.setString("email", _emailController.text);
     // mandarina.setInt("age", 30); //Set para guardar, get para obtener.
-    print("Guardando....");
+    // // print("Guardando....");
+    SPGlobal().name = "Sonia María Ayte Camones";
   }
 
   Future<void> getData() async {
