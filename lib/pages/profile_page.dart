@@ -23,6 +23,8 @@ class _ProfilePageState extends State<ProfilePage> {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // name = prefs.getString("name") ?? "No disponible";
     name = SPGlobal().name;
+    adress = SPGlobal().address;
+    email = SPGlobal().email;
     // adress = prefs.getString("adress") ?? "No disponible";
     // email = prefs.getString("email") ?? "No disponible";
 
@@ -50,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 30,
             ),
             Text(
-              name,
+              SPGlobal().name,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
@@ -68,7 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 20.0,
             ),
             Text(
-              adress,
+              SPGlobal().address,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
@@ -86,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 20.0,
             ),
             Text(
-              email,
+              SPGlobal().email,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,

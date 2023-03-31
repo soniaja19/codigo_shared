@@ -22,6 +22,7 @@ class SPGlobal {
 //Cuando yo quiera asignarle algo tenemos que ejecutar este metodo
   Future<void> initSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
+    prefs.clear();
   }
 
   // Con esto guardamos el Shared preference
@@ -32,5 +33,21 @@ class SPGlobal {
   // Con esto obtenemos el Shared preference
   String get name {
     return prefs.getString("name") ?? "--";
+  }
+
+  set address(String value) {
+    prefs.setString("address", value);
+  }
+
+  String get address {
+    return prefs.getString("address") ?? "--";
+  }
+
+  set email(String value) {
+    prefs.setString("email", value);
+  }
+
+  String get email {
+    return prefs.getString("email") ?? "--";
   }
 }

@@ -11,9 +11,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String name = "--";
+  String address = "--";
+
   int age = 0;
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _adressController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 //_ significa que la variable es privada, para queesta clase tenga acceso a ello, utilizado genericamente
 
@@ -26,7 +28,9 @@ class _HomePageState extends State<HomePage> {
     // // mandarina.setString("email", _emailController.text);
     // mandarina.setInt("age", 30); //Set para guardar, get para obtener.
     // // print("Guardando....");
-    SPGlobal().name = "Sonia María Ayte Camones";
+    SPGlobal().name = _nameController.text;
+    SPGlobal().address = _addressController.text;
+    SPGlobal().email = _emailController.text;
   }
 
   Future<void> getData() async {
@@ -73,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   height: 10,
                 ),
                 TextField(
-                  controller: _adressController,
+                  controller: _addressController,
                   decoration: const InputDecoration(
                     hintText: "Dirección",
                   ),
